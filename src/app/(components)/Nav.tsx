@@ -14,7 +14,7 @@ const Nav = (props: Props) => {
           <Link href="/ClientMember">Client Member</Link>
           <Link href="/Denied">Denied</Link>
           <Link href="/Member">Member</Link>
-          <Link href="public">Public</Link>
+          <Link href="/register">Register</Link>
         </div>
       </nav>
     </header>

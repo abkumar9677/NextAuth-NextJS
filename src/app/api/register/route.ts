@@ -8,7 +8,7 @@ export async function POST(req: NextRequest) {
     await connect();
     const reqBody = await req.json();
     const { username, email, password } = reqBody;
-    console.log('reqBody', reqBody)
+    console.log("reqBody", reqBody);
 
     const user = await User.findOne({ email });
 
@@ -18,14 +18,15 @@ export async function POST(req: NextRequest) {
         { status: 400 }
       );
     }
-
-    const hashedPassword = bcryptjs.hash(password, 10);
+    // const salt = await bcryptjs.genSalt(10);
+    const hashedPassword = await bcryptjs.hash(password, 10);
 
     const newUser = new User({
       username,
       email,
       password: hashedPassword,
     });
+    console.log(newUser, "newUser");
 
     const savedUser = await newUser.save();
 
@@ -34,8 +35,10 @@ export async function POST(req: NextRequest) {
       success: true,
       savedUser,
     });
-
   } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    return NextResponse.json(
+      { error: error.message + "twenty" },
+      { status: 500 }
+    );
   }
 }

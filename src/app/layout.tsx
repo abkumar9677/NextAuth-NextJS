@@ -14,7 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full">
-      <body className="bg-gray-100 h-full">
+      <body className="bg-gray-100 h-full" suppressHydrationWarning={true}>
         <Nav />
         <div className="m-2">{children}</div>
       </body>
